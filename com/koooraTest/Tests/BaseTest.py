@@ -16,7 +16,7 @@ class BaseTest:
     def setUp(self):
         self.driver.implicitly_wait(10)
         self.driver.maximize_window()
-        self.driver.get("https://www.kooora.com/")
+        self.driver.get(locator.Locator.url)
 
 
 browser = webdriver.Chrome()

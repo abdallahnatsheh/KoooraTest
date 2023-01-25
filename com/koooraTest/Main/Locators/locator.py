@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 class Locator(object):
     # Locators for Koora Home Page
     league = "الدوري الألماني الدرجة الأولى"
+    url = "https://www.kooora.com/"
     # navbar
     mainPageNavBtn = {
         'By': By.XPATH,
