@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 from com.koooraTest.Main.Locators.locator import Locator
 from com.koooraTest.Main.Pages.PlayerReport import PlayerReport
@@ -9,12 +11,14 @@ class LeagueMatches:
 
     def __init__(self, driver):
         self.driver = driver
-        self.goaler_list = driver.find_element(By.XPATH, Locator.goalersListText)
+        self.goaler_list = Locator.goalersListText
 
     def get_goaler_list(self):
         try:
             print("locating main button in navbar .....")
-            return self.goaler_list
+            return WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((self.goaler_list['By'], self.goaler_list['Value'])))
+
         except:
             Utils.printError(" error locating goaler list in page")
 

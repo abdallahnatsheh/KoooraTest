@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from com.koooraTest.Main.Locators.locator import Locator
 from com.koooraTest.Main.Pages.LeagueMatches import LeagueMatches
 from com.koooraTest.Main.Utils.Utils import Utils
@@ -8,12 +9,14 @@ from com.koooraTest.Main.Utils.Utils import Utils
 class Today:
     def __init__(self, driver):
         self.driver = driver
-        self.english_league = driver.find_element(By.XPATH, Locator.englishLeagueText)
+        self.english_league = Locator.englishLeagueText
 
     def get_english_league_matches(self):
         print("getting english league matches text ...")
         try:
-            return self.english_league
+            return WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((self.english_league['By'], self.english_league['Value'])))
+
         except:
             Utils.printError("error getting english league matches text")
 
